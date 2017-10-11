@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ggf.ssm.mapper.UserMapper">
+    <!-- 商品的列表查询，按照修改时间倒序 -->
+    <select id="findAll" resultType="com.ggf.ssm.pojo.User">
+        SELECT * FROM USER
+    </select>
+</mapper>
