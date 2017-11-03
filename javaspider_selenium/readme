@@ -1,0 +1,3 @@
+# Java爬虫：
+    结合了selenium+Chromedriver实现自动化爬取
+    好处是可以直接获取到一些动态加载的内容
