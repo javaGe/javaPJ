@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ggf.novel.dao.ContentMapper" >
+  <resultMap id="BaseResultMap" type="com.ggf.novel.entity.Content" >
+    <constructor >
+      <arg column="story_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="chapter" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="chapter_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="story_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ggf.novel.entity.Content" >
+    <constructor >
+      <arg column="story_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="chapter" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="chapter_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="story_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="story_content" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    story_content
+  </sql>
+  <insert id="insert" parameterType="com.ggf.novel.entity.Content" >
+    insert into content (story_name, chapter, chapter_num, 
+      story_id, story_content)
+    values (#{storyName,jdbcType=VARCHAR}, #{chapter,jdbcType=VARCHAR}, #{chapterNum,jdbcType=INTEGER}, 
+      #{storyId,jdbcType=VARCHAR}, #{storyContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ggf.novel.entity.Content" >
+    insert into content
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="storyName != null" >
+        story_name,
+      </if>
+      <if test="chapter != null" >
+        chapter,
+      </if>
+      <if test="chapterNum != null" >
+        chapter_num,
+      </if>
+      <if test="storyId != null" >
+        story_id,
+      </if>
+      <if test="storyContent != null" >
+        story_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="storyName != null" >
+        #{storyName,jdbcType=VARCHAR},
+      </if>
+      <if test="chapter != null" >
+        #{chapter,jdbcType=VARCHAR},
+      </if>
+      <if test="chapterNum != null" >
+        #{chapterNum,jdbcType=INTEGER},
+      </if>
+      <if test="storyId != null" >
+        #{storyId,jdbcType=VARCHAR},
+      </if>
+      <if test="storyContent != null" >
+        #{storyContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
