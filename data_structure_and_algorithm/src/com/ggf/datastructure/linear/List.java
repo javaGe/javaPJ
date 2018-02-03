@@ -2,6 +2,11 @@ package com.ggf.datastructure.linear;
 
 /**
  * @description: 顺序线性表，描述线性表的抽象数据类型，泛型 <T>表示数据元素的数据类型
+ * 顺序表的数据抽象类型：
+ * data：
+ * 包含相同性质的数据元素
+ * operation：
+ * 包含增删改查等操作。
  * @author: geguangfu
  * @date：2018/2/1
  * @time：14:30

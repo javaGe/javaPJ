@@ -9,7 +9,7 @@ import java.util.Arrays;
  * @time：15:42
  * @version: v1.0
  */
-public class SeqList<T> implements List<T> {
+public class SequenceList<T> implements List<T> {
 
     /**
      * 对象数组
@@ -24,15 +24,15 @@ public class SeqList<T> implements List<T> {
     /**
      * 无参构造函数，初始化一个长度为64的数组
      */
-    public SeqList() {
-        this(3);
+    public SequenceList() {
+        this(10);
     }
 
     /**
      * 有参构造函数，创建一个容量为size的空表
      * @param size
      */
-    public SeqList(int size) {
+    public SequenceList(int size) {
         this.element = new Object[size];
         this.len = 0;
     }
@@ -160,19 +160,70 @@ public class SeqList<T> implements List<T> {
         this.len = 0;
     }
 
+
+    /**
+     * 查找该关键字在顺序表的小标位置
+     * @param key
+     * @return
+     */
     @Override
     public T search(T key) {
-        return null;
+        int find = indexOf(key);
+        return find == -1 ? null : (T)this.element[find];
+    }
+
+    /**
+     * 顺序查找关键字为key元素，返回首次出现的元素，若查找不成功返回-1
+     * @param key
+     * @return
+     */
+    public int indexOf(T key) {
+        if (key != null) {
+            for (int i=0; i<this.len; i++) {
+                // 比较是否相等
+                if (key.equals(this.element[i])) {
+                    return i;
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        // 如果两个对象是同一个对象，返回true
+        if (this == obj) {
+            return true;
+        }
+
+        // 比较的对象属于实例对象
+        if (obj instanceof SequenceList) {
+            // 转换为实例对象
+            SequenceList<T> list = (SequenceList<T>)obj;
+
+            // 比较顺序表的元素
+            for (int i=0; i<this.length(); i++) {
+                if (!this.get(i).equals(list.get(i))) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
 
-
     public static void main(String[] args) {
-        SeqList<Integer> list = new SeqList<Integer>();
+        SequenceList<Integer> list = new SequenceList<Integer>();
         list.append(1);
         list.append(2);
         list.append(3);
         list.insert(0,4);
+
+        list.search(3);
 
         System.out.println(list.length());
         for (int i=0; i<list.length(); i++) {
